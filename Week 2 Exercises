@@ -1,0 +1,49 @@
+3.1 And 3.2
+SELECT product_code, product_name, list_price, discount_percent
+FROM products
+ORDER BY list_price DESC;
+
+3.3 And 3.4
+SELECT CONCAT (last_name, ', ', first_name) AS full_name
+FROM customers
+WHERE last_name > 'L' 
+ORDER BY last_name, first_name;
+
+3.5
+SELECT product_name AS "Product Name",
+		list_price AS "List Price",
+        date_added  AS  "Date Added"
+FROM products 
+WHERE list_price > 500 AND list_price < 2000
+ORDER BY list_price DESC;
+
+4.1
+SELECT category_name, product_name, list_price
+FROM categories c JOIN products p
+	ON c.category_id = p.category_id
+ORDER BY category_name, product_name;
+
+4.2
+SELECT first_name, last_name, line1, 
+      City, state, zip code
+FROM customers cu JOIN addresses a
+  ON cu.customer_id = a.customer_id
+WHERE cu.email_address = 'allan.sherwood@yahoo.com';
+
+4.3
+SELECT first_name, last_name, line1, 
+      city, state, zip_code
+FROM customers cu JOIN addresses a
+  ON cu.customer_id = a.customer_id AND cu.shipping_address_id = a.address_id;
+
+4.4
+SELECT last_name, first_name, order_date, 
+       product_name, item_price, discount_amount, quantity
+FROM customers cu JOIN orders o
+  ON cu.customer_id = o.customer_id
+ JOIN order_items oi
+   ON o.order_id = oi.order_id
+  JOIN products p 
+	ON oi.product_id = p.product_id
+ORDER BY last_name, order_date, product_name;
+
